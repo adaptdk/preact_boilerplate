@@ -6,7 +6,8 @@
     "start": "node config/webpack.config start",
     "build": "node config/webpack.config build",
     "test": "node config/webpack.config test --env=jsdom",
-    "prod": "pm2 start ./server.js --name appName"
+    "prod": "pm2 start ./server.js --name appName",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@just-boris/preact-scripts": "1.1.0",
