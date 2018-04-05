@@ -1,11 +1,13 @@
 import promise from 'redux-promise';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
+import 'preact/devtools';
+
+// Reducer
 import rootReducer from '../reducers/Root';
 
-export const isProduction = process.env.NODE_ENV === 'production';
-
 const configureStore = (initialState = {}) => {
+  const isProduction = process.env.NODE_ENV === 'production';
   const middleware = applyMiddleware(thunk, promise);
   // If Production
   if (isProduction) {
