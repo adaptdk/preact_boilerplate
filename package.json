@@ -1,8 +1,8 @@
 {
-  "name": "tryg_forsikring",
+  "name": "preact_boilerplate",
   "version": "0.1.0",
   "private": true,
-  "author": "adapt",
+  "author": "mads-thines",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
