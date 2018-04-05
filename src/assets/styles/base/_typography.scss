@@ -1,0 +1,92 @@
+// Headers
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $color-black;
+}
+
+// Creates the default typography settings for headers looping over the header variable in settings-typography
+@each $hS in $headerSize {
+  $i: index($headerSize, $hS); // Get the index of the looped sizes
+  $hS-index: nth($hS, 1); // HS (Header Size) Index
+  $hS-value: nth($hS, 2); // HS (Header Size) font size
+
+  h#{$i} {
+    font-size: $hS-value * 0.85;
+    margin: $hS-value 0 $hS-value/4;
+
+    @media (min-width: 768px) {
+      font-size: $hS-value;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+h1 {
+  font-weight: $fw-light;
+}
+
+h2 {
+  font-weight: $fw-light;
+}
+
+h3 {
+  font-weight: $fw-bold;
+}
+
+h4 {
+  font-weight: $fw-bold;
+}
+
+h5 {
+  font-weight: $fw-bold;
+}
+
+h6 {
+  font-weight: $fw-bold;
+}
+
+// Paragraph
+p {
+  line-height: $font-line-height;
+  letter-spacing: $font-size/40;
+  margin: 0;
+
+  + p {
+    margin-top: $font-size/1.25;
+  }
+}
+
+// Link
+a {
+  cursor: pointer;
+  color: $color-orange;
+  transition: color $base-trans-links;
+
+  &:hover {
+    color: $color-black;
+  }
+
+  &:focus {
+    color: $color-black;
+    outline: none;
+  }
+}
+
+// Strong/Important
+strong {
+  font-weight: 700;
+  color: $color-black;
+}
+
+// Emphasised
+em {
+  font-style: italic;
+  color: $color-black;
+}

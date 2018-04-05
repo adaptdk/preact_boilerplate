@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /*
   This module runs the scripts from react-scripts (Create React App)
   and gives an opportunity to override the Webpack config by creating
@@ -17,11 +19,11 @@ var proxyquire = require('proxyquire');
 switch (process.argv[2]) {
   // The "start" script is run during development mode
   case 'start':
-    rewireModule('@just-boris/preact-scripts/scripts/start.js', loadCustomizer('../webpack.dev'));
+    rewireModule('@just-boris/preact-scripts/scripts/start.js', loadCustomizer('./webpack.dev.js'));
     break;
     // The "build" script is run to produce a production bundle
   case 'build':
-    rewireModule('@just-boris/preact-scripts/scripts/build.js', loadCustomizer('../webpack.prod'));
+    rewireModule('@just-boris/preact-scripts/scripts/build.js', loadCustomizer('./webpack.prod.js'));
     break;
     // The "test" script runs all the tests with Jest
   case 'test':

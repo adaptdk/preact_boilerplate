@@ -1,7 +1,28 @@
 import { h, render } from 'preact';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-render(<App />, document.getElementById('root'));
+import './assets/styles/main.scss';
+import App from './containers/App/App.js';
+import registerServiceWorker from './utilities/registerServiceWorker';
+
+import configureStore from './utilities/configureStore';
+
+const store = configureStore(window.__INITIAL_STATE__); // eslint-disable-line
+
+render(
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route exact path='/' component={App}/>
+      </Switch>
+    </Router>
+  </Provider>,
+  document.getElementById('root')
+);
+
 registerServiceWorker();

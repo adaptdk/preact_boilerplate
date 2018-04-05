@@ -1,0 +1,42 @@
+// General
+* {
+  box-sizing: border-box;
+}
+
+// Html
+html {
+  font-size: 16px;
+  height: auto;
+}
+
+// Body
+body {
+  font-family: $f-Arial;
+  font-size: $font-size;
+  font-weight: $fw-regular;
+  font-style: normal;
+  line-height: $font-line-height;
+  color: $color-darkGrey;
+  background-color: $color-white;
+  margin: 0;
+  vertical-align: top;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased; // stylelint-disable-line
+  -moz-osx-font-smoothing: grayscale; // stylelint-disable-line
+}
+
+// Media
+img {
+  display: inline-block;
+  max-width: 100%;
+}
+
+// Horizontal Line
+hr {
+  width: 100%;
+}
+
+// Figure
+figure {
+  margin: 0;
+}
