@@ -22,7 +22,7 @@ class App extends Component {
     const { test } = this.state;
 
     return (
-      <div className="App">
+      <div className="app">
         <CSSTransition
           in={test === true}
           timeout={300}
@@ -30,13 +30,13 @@ class App extends Component {
           unmountOnExit
         >
           {() => (
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo"/>
-              <h1 className="App-title">Welcome to React</h1>
+            <header className="app-header">
+              <img src={logo} className="app-logo" alt="logo"/>
+              <h1 className="app-title">Welcome to React</h1>
             </header>
           )}
         </CSSTransition>
-        <button className="App-intro" onClick={this.onClicker}>
+        <button className="app-intro" onClick={this.onClicker}>
           To get started, edit <code>src/App.js</code> and save to reload.
         </button>
       </div>

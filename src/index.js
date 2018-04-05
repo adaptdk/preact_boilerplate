@@ -11,6 +11,7 @@ import registerServiceWorker from './utilities/registerServiceWorker';
 import configureStore from './utilities/configureStore';
 
 // Importing Styles
+import './assets/styles/critical.scss';
 import './assets/styles/main.scss';
 
 // Confiuring Redux Store

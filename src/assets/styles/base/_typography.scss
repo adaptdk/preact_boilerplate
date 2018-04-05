@@ -1,55 +1,23 @@
 // Creates the default typography settings
-@each $hS in $headerSize {
-  $i: index($headerSize, $hS); // Get the index of the looped sizes
-  $hS-index: nth($hS, 1); // HS (Header Size) Index
-  $hS-value: nth($hS, 2); // HS (Header Size) font size
+$headerSizes: (
+        h1: ($fs-h1*0.8, $fs-h1),
+        h2: ($fs-h2*0.8, $fs-h2),
+        h3: ($fs-h3*0.8, $fs-h3),
+        h4: ($fs-h4*0.8, $fs-h4),
+        h5: ($fs-h5*0.8, $fs-h5),
+        h6: ($fs-h6*0.8, $fs-h6),
+);
 
-  h#{$i} {
-    font-size: $hS-value * 0.85;
-    margin: $hS-value 0 $hS-value/4;
-
-    @media (min-width: 768px) {
-      font-size: $hS-value;
-    }
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-}
-
-h1 {
-  font-weight: $fw-light;
-}
-
-h2 {
-  font-weight: $fw-light;
-}
-
-h3 {
-  font-weight: $fw-bold;
-}
-
-h4 {
-  font-weight: $fw-bold;
-}
-
-h5 {
-  font-weight: $fw-bold;
-}
-
-h6 {
-  font-weight: $fw-bold;
-}
+@include responsive-typography($headerSizes);
 
 // Paragraph
 p {
-  line-height: $font-line-height;
-  letter-spacing: $font-size/40;
+  line-height: $flh-normal;
+  letter-spacing: $fs-normal/40;
   margin: 0;
 
   + p {
-    margin-top: $font-size/1.25;
+    margin-top: $fs-normal/1.25;
   }
 }
 
@@ -61,11 +29,9 @@ a {
 // Strong/Important
 strong {
   font-weight: $fw-bold;
-  color: $color-black;
 }
 
 // Emphasised
 em {
   font-style: italic;
-  color: $color-black;
 }
