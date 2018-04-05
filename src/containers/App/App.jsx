@@ -12,7 +12,6 @@ class App extends Component {
     };
   }
 
-
   onClicker() {
     this.setState({
       test: !this.state.test,
@@ -24,13 +23,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <button className="App-intro" onClick={this.onClicker} onKeyDown={this.onClicker}>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </button>
         <CSSTransition
           in={test === true}
           timeout={300}
-          classNames="message"
+          classNames="animate-fromTop"
           unmountOnExit
         >
           {() => (
@@ -40,6 +36,9 @@ class App extends Component {
             </header>
           )}
         </CSSTransition>
+        <button className="App-intro" onClick={this.onClicker}>
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </button>
       </div>
     );
   }

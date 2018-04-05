@@ -1,0 +1,27 @@
+.animate {
+  &-fromTop {
+    // Enter Animation
+    // Start State
+    &-enter {
+      transition: transform 0.5s ease;
+      transform: translateY(-1000px);
+
+      // Ending State
+      &-active {
+        transform: translateY(0);
+      }
+    }
+
+    // Exit Animation
+    // Start State
+    &-exit {
+      transition: transform 0.5s ease;
+      transform: translateY(0);
+
+      // Ending State
+      &-active {
+        transform: translateY(-1000px);
+      }
+    }
+  }
+}

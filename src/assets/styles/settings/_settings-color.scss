@@ -11,11 +11,13 @@ $color-darkBlue:       #00374F; // Dark Blue
 $color-black:          #09181C; // Black
 
 // Greys
-$color-grey:           #B2B2B2; // Base Grey
-$color-darkGrey:       darken($color-grey, 45%); // Dark Grey
-$color-mediumGrey:     lighten($color-grey, 18%); // Medium Grey
-$color-lightGrey:      lighten($color-grey, 25%); // Light Grey
-$color-lighterGrey:    lighten($color-grey, 28%); // Lighter Grey
+$color-grey: #888888; // Base Grey
+
+// Grey Variants
+$color-darkGrey:       darken($color-grey, 35%); // Dark Grey
+$color-mediumGrey:     lighten($color-grey, 20%); // Medium Grey
+$color-lightGrey:      lighten($color-grey, 30%); // Light Grey
+$color-lighterGrey:    lighten($color-grey, 35%); // Lighter Grey
 
 // Overlay colors
 $color-overlay:        rgba(0, 0, 0, 0.5);

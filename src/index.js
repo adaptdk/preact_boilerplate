@@ -1,26 +1,26 @@
 import { h, render } from 'preact';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
 
-import './assets/styles/main.scss';
-import App from './containers/App/App.js';
+// Constants
+import routes from './constants/Routes';
+
+// Utilities
 import registerServiceWorker from './utilities/registerServiceWorker';
-
 import configureStore from './utilities/configureStore';
 
+// Importing Styles
+import './assets/styles/main.scss';
+
+// Confiuring Redux Store
 const store = configureStore(window.__INITIAL_STATE__); // eslint-disable-line
 
 render(
   <Provider store={store}>
-    <Router>
-      <Switch>
-        <Route exact path='/' component={App}/>
-      </Switch>
-    </Router>
+    <BrowserRouter>
+      {renderRoutes(routes)}
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

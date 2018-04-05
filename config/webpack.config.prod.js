@@ -19,8 +19,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
-// Source Path
-const srcPath = path.join(__dirname, '../src/');
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
 const shouldUseRelativeAssetPaths = publicPath === './';
@@ -66,7 +64,8 @@ module.exports = {
   // In production, we only want to load the polyfills and the app code.
   entry: [
     require.resolve('./polyfills'),
-    paths.appIndexJs
+    paths.appIndexJs,
+    paths.appSrc + '/assets/styles/main.scss',
   ],
   output: {
     // The build folder.
@@ -102,7 +101,6 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -255,7 +253,7 @@ module.exports = {
                         require('postcss-flexbugs-fixes'),
                         require('postcss-calc'),
                         require('postcss-inline-svg')({
-                          path: srcPath + '/assets/icons',
+                          path: paths.appSrc + '/assets/icons',
                         }),
                       ];
                     }
@@ -291,7 +289,7 @@ module.exports = {
   plugins: [
 
     // DO NOT USE FOR PRODUCTION - ANALYSIS THE VENDOR FILE
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     // DO NOT USE FOR PRODUCTION - ANALYSIS THE VENDOR FILE
 
     // Makes some environment variables available in index.html.
@@ -347,7 +345,7 @@ module.exports = {
     // Split the bundle from vendor into another chunk
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'vendor.[hash:8].js',
+      filename: 'static/js/vendor.[hash:8].js',
       minChunks(module) {
         const context = module.context;
         return context && context.indexOf('node_modules') >= 0;

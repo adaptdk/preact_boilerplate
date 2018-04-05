@@ -1,14 +1,4 @@
-// Headers
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: $color-black;
-}
-
-// Creates the default typography settings for headers looping over the header variable in settings-typography
+// Creates the default typography settings
 @each $hS in $headerSize {
   $i: index($headerSize, $hS); // Get the index of the looped sizes
   $hS-index: nth($hS, 1); // HS (Header Size) Index
@@ -66,22 +56,11 @@ p {
 // Link
 a {
   cursor: pointer;
-  color: $color-orange;
-  transition: color $base-trans-links;
-
-  &:hover {
-    color: $color-black;
-  }
-
-  &:focus {
-    color: $color-black;
-    outline: none;
-  }
 }
 
 // Strong/Important
 strong {
-  font-weight: 700;
+  font-weight: $fw-bold;
   color: $color-black;
 }
 

@@ -4,8 +4,10 @@ $base-gutter: 20px;
 $base-leading: 20px;
 
 // Visual Variables
-$base-border: 1px solid $color-mediumGrey;
+$base-border: 1px solid $color-black;
 $base-radius: 2px;
+$base-shadow: 0 5px 20px rgba(0, 0, 0, 0.075);
+
+// Transition Timing
 $base-trans: 0.3s ease;
 $base-trans-links: 0.15s ease;
-$base-shadow: 0 5px 20px rgba(0, 0, 0, 0.075);
