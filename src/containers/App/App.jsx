@@ -25,7 +25,7 @@ class App extends Component {
       <div className="app">
         <CSSTransition
           in={test === true}
-          timeout={300}
+          timeout={500}
           classNames="animate-fromTop"
           unmountOnExit
         >
