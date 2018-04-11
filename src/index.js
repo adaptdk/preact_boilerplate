@@ -13,6 +13,7 @@ import configureStore from './utilities/configureStore';
 // Importing Styles
 import './assets/styles/critical.scss';
 import './assets/styles/main.scss';
+import './assets/styles/vendor/dev.scss';
 
 // Confiuring Redux Store
 const store = configureStore(window.__INITIAL_STATE__); // eslint-disable-line

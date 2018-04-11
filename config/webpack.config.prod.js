@@ -227,6 +227,9 @@ module.exports = {
           },
           {
             test: /\.scss$/,
+            exclude: [
+              /dev\.scss$/
+            ],
             use: ExtractTextPlugin.extract({
               fallback: 'style-loader',
               use: [{
