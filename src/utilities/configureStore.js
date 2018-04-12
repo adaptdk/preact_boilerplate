@@ -1,14 +1,14 @@
-import promise from 'redux-promise';
-import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import 'preact/devtools';
 
-// Reducer
+// Importing Middlewares
+import { middlewares } from './middlewares/middlewares';
 import rootReducer from '../reducers/Root';
 
 const configureStore = (initialState = {}) => {
   const isProduction = process.env.NODE_ENV === 'production';
-  const middleware = applyMiddleware(thunk, promise);
+  const middleware = applyMiddleware(...middlewares);
+
   // If Production
   if (isProduction) {
     return createStore(
@@ -18,8 +18,8 @@ const configureStore = (initialState = {}) => {
   }
 
   // If Not Production
-  let enhancer;
   // Enable DevTools if browser extension is installed
+  let enhancer;
   if (window.__REDUX_DEVTOOLS_EXTENSION__) { // eslint-disable-line
     enhancer = compose(
       middleware,
