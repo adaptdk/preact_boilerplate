@@ -35,7 +35,7 @@ function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);
   const servedUrl = envPublicUrl ||
     (publicUrl ? url.parse(publicUrl).pathname : '/');
-  return ensureSlash(servedUrl, true);
+  return ensureSlash(servedUrl, false);
 }
 
 // config after eject: we're in ./config/
@@ -44,6 +44,7 @@ module.exports = {
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
+  appHtmlFull: resolveApp('public/index-full.html'),
   appIndexJs: resolveApp('src/index.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),

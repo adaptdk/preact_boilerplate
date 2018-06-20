@@ -11,6 +11,9 @@ if (typeof Promise === 'undefined') {
 // fetch() polyfill for making API calls.
 require('whatwg-fetch');
 
+// Adding new URL polyfill
+require('url-polyfill');
+
 // Object.assign() is commonly used with React.
 // It will use the native implementation if it's present and isn't buggy.
 Object.assign = require('object-assign');
@@ -20,3 +23,12 @@ Object.assign = require('object-assign');
 if (process.env.NODE_ENV === 'test') {
   require('raf').polyfill(global);
 }
+
+// Custom Polyfills
+require('./polyfills/entries');
+require('./polyfills/filter');
+require('./polyfills/find');
+require('./polyfills/findIndex');
+require('./polyfills/includes');
+require('./polyfills/map');
+require('./polyfills/reduce');

@@ -22,6 +22,8 @@ const publicPath = '/';
 const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
+// Define if the build should contain top html elements (<html> and <body>).
+const useIndexFull = true;
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
@@ -144,6 +146,10 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          {
+            test: /\.svg$/,
+            loader: 'raw-loader'
+          },
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
@@ -257,7 +263,7 @@ module.exports = {
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
-      template: paths.appHtml,
+      template: useIndexFull ? paths.appHtmlFull : paths.appHtml,
     }),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),
