@@ -2,16 +2,19 @@
 'use strict';
 
 const autoprefixer = require('autoprefixer');
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
+const path = require('path');
 const paths = require('./paths');
+const postcssCalc = require('postcss-calc');
+const postcssFlexbugs = require('postcss-flexbugs-fixes');
+const postcssInlineSvg = require('postcss-inline-svg');
+const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+const webpack = require('webpack');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -185,7 +188,7 @@ module.exports = {
                   // https://github.com/facebookincubator/create-react-app/issues/2677
                   ident: 'postcss',
                   plugins: () => [
-                    require('postcss-flexbugs-fixes'),
+                    postcssFlexbugs,
                     autoprefixer({
                       browsers: [
                         '>1%',
@@ -213,23 +216,21 @@ module.exports = {
                 loader: 'postcss-loader',
                 options: {
                   ident: 'postcss',
-                  plugins: function () {
-                    return [
-                      autoprefixer({
-                        browsers: [
-                          '>1%',
-                          'last 4 versions',
-                          'Firefox ESR',
-                          'not ie < 9', // React doesn't support IE8 anyway
-                        ],
-                      }),
-                      require('postcss-flexbugs-fixes'),
-                      require('postcss-calc'),
-                      require('postcss-inline-svg')({
-                        path: paths.appSrc + '/assets/icons',
-                      }),
-                    ];
-                  },
+                  plugins: () => ([
+                    autoprefixer({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                      ],
+                    }),
+                    postcssFlexbugs,
+                    postcssCalc,
+                    postcssInlineSvg({
+                      path: paths.appSrc + '/assets/icons',
+                    }),
+                  ]),
                 },
               },
               {

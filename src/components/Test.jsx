@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 
 // Styling
-import './test.scss';
+import './_test.scss';
 
 class Test extends Component {
   render() {

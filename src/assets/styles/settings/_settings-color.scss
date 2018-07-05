@@ -16,6 +16,9 @@ $c-mediumGrey:      lighten($c-grey, 20%);  // Medium Grey
 $c-lightGrey:       lighten($c-grey, 30%);  // Light Grey
 $c-lighterGrey:     lighten($c-grey, 35%);  // Lighter Grey
 
+// Fonts
+$c-font:            $c-black;
+
 // Overlay colors
 $c-overlay:         rgba(0, 0, 0, 0.5);
 $c-transparent:     rgba(255, 255, 255, 0);

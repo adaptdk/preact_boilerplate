@@ -2,19 +2,22 @@
 'use strict';
 
 const autoprefixer = require('autoprefixer');
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const WebpackDeleteAfterEmit = require('webpack-delete-after-emit');
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-const paths = require('./paths');
-const getClientEnvironment = require('./env');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const eslintFormatter = require('react-dev-utils/eslintFormatter');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const getClientEnvironment = require('./env');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
+const path = require('path');
+const paths = require('./paths');
+const postcssCalc = require('postcss-calc');
+const postcssFlexbugs = require('postcss-flexbugs-fixes');
+const postcssInlineSvg = require('postcss-inline-svg');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const webpack = require('webpack');
+const WebpackDeleteAfterEmit = require('webpack-delete-after-emit');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -72,7 +75,6 @@ module.exports = {
   entry: [
     require.resolve('./polyfills'),
     paths.appIndexJs,
-    paths.appSrc + '/assets/styles/main.scss',
   ],
   output: {
     // The build folder.
@@ -85,10 +87,9 @@ module.exports = {
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
-    devtoolModuleFilenameTemplate: info =>
-      path
-        .relative(paths.appSrc, info.absoluteResourcePath)
-        .replace(/\\/g, '/'),
+    devtoolModuleFilenameTemplate: info => path
+      .relative(paths.appSrc, info.absoluteResourcePath)
+      .replace(/\\/g, '/'),
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -98,7 +99,7 @@ module.exports = {
     modules: ['node_modules', paths.appNodeModules].concat(
       // It is guaranteed to exist because we tweak it in `env.js`
       process.env.NODE_PATH.split(path.delimiter)
-             .filter(Boolean)
+        .filter(Boolean)
     ),
     // These are the reasonable defaults supported by the Node ecosystem.
     // We also include JSX as a common component filename extension to support
@@ -173,7 +174,6 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-
               compact: true,
             },
           },
@@ -254,23 +254,21 @@ module.exports = {
                   loader: 'postcss-loader',
                   options: {
                     ident: 'postcss',
-                    plugins: function() {
-                      return [
-                        autoprefixer({
-                          browsers: [
-                            '>1%',
-                            'last 4 versions',
-                            'Firefox ESR',
-                            'not ie < 9', // React doesn't support IE8 anyway
-                          ]
-                        }),
-                        require('postcss-flexbugs-fixes'),
-                        require('postcss-calc'),
-                        require('postcss-inline-svg')({
-                          path: paths.appSrc + '/assets/icons',
-                        }),
-                      ];
-                    }
+                    plugins: () => ([
+                      autoprefixer({
+                        browsers: [
+                          '>1%',
+                          'last 4 versions',
+                          'Firefox ESR',
+                          'not ie < 9', // React doesn't support IE8 anyway
+                        ]
+                      }),
+                      postcssFlexbugs,
+                      postcssCalc,
+                      postcssInlineSvg({
+                        path: paths.appSrc + '/assets/icons',
+                      }),
+                    ])
                   }
                 },
                 {
@@ -303,7 +301,7 @@ module.exports = {
   plugins: [
     // If debugNodeModules is set to true, the debug it
     new BundleAnalyzerPlugin({
-      analyzerMode: conf.debugNodeModules ? "server" : "disabled",
+      analyzerMode: conf.debugNodeModules ? 'server' : 'disabled',
       openAnalyzer: conf.debugNodeModules ? true : false,
     }),
     // Makes some environment variables available in index.html.

@@ -1,10 +1,12 @@
 import { h, Component } from 'preact';
 
+import Test from '../../components/Test';
+
 class App extends Component {
   render() {
     return (
       <div className="app">
-        <h1 className="app-title">Welcome to React</h1>
+        <Test/>
       </div>
     );
   }
