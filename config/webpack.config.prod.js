@@ -7,13 +7,13 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const WebpackDeleteAfterEmit = require('webpack-delete-after-emit');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
-
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -39,6 +39,13 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 
 // Note: defined here because it will be used more than once.
 const cssFilename = 'static/css/[name].[contenthash:8].css';
+
+const conf = {
+  // If True then it'll debug the sizes of the node modules
+  debugNodeModules: false,
+  // Controls where the build should contain the Top HTML elements (<html>, <body> etc.).
+  useIndexFull: false
+};
 
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
@@ -91,7 +98,7 @@ module.exports = {
     modules: ['node_modules', paths.appNodeModules].concat(
       // It is guaranteed to exist because we tweak it in `env.js`
       process.env.NODE_PATH.split(path.delimiter)
-        .filter(Boolean)
+             .filter(Boolean)
     ),
     // These are the reasonable defaults supported by the Node ecosystem.
     // We also include JSX as a common component filename extension to support
@@ -157,6 +164,10 @@ module.exports = {
             },
           },
           // Process JS with Babel.
+          {
+            test: /\.svg$/,
+            loader: 'raw-loader'
+          },
           {
             test: /\.(js|jsx|mjs)$/,
             include: paths.appSrc,
@@ -243,7 +254,7 @@ module.exports = {
                   loader: 'postcss-loader',
                   options: {
                     ident: 'postcss',
-                    plugins: function () {
+                    plugins: function() {
                       return [
                         autoprefixer({
                           browsers: [
@@ -290,11 +301,11 @@ module.exports = {
     ],
   },
   plugins: [
-
-    // DO NOT USE FOR PRODUCTION - ANALYSIS THE VENDOR FILE
-    // new BundleAnalyzerPlugin(),
-    // DO NOT USE FOR PRODUCTION - ANALYSIS THE VENDOR FILE
-
+    // If debugNodeModules is set to true, the debug it
+    new BundleAnalyzerPlugin({
+      analyzerMode: conf.debugNodeModules ? "server" : "disabled",
+      openAnalyzer: conf.debugNodeModules ? true : false,
+    }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
@@ -303,8 +314,8 @@ module.exports = {
     new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
-      inject: true,
-      template: paths.appHtml,
+      inject: conf.useIndexFull,
+      template: conf.useIndexFull ? paths.appHtmlFull : paths.appHtml,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -403,6 +414,10 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    // Whether you're building with or without <body> and <head> tag, the index-full.html will be deleted
+    new WebpackDeleteAfterEmit({
+      globs: ['index-full.html']
+    })
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

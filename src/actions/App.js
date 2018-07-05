@@ -6,6 +6,6 @@ export const appInitial = createAction(types.APP_INITIAL);
 
 // Example
 export const AppModalState = createAction(types.APP_MODAL_STATE);
-export const setAppModalState = (payload) => (dispatch: object) => (
+export const setAppModalState = (payload: Object) => (dispatch: Function) => (
   dispatch(AppModalState(payload))
 );
