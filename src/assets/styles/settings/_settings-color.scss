@@ -1,24 +1,21 @@
-// stylelint-disable
 // Primary Colours
-$color-orange:         #E94E1B; // Orange
-$color-peach:          #EF7A39; // Peach
+$c-orange:          #E94E1B;                // Orange
+$c-peach:           #EF7A39;                // Peach
 
 // Secondary Colours
-$color-white:          #FFFFFF; // White
-$color-lightBlue:      #B5CDDB; // Light Blue
-$color-turquoise:      #0DA8BF; // Turquoise
-$color-darkBlue:       #00374F; // Dark Blue
-$color-black:          #09181C; // Black
+$c-white:           #FFFFFF;                // White
+$c-lightBlue:       #B5CDDB;                // Light Blue
+$c-turquoise:       #0DA8BF;                // Turquoise
+$c-darkBlue:        #00374F;                // Dark Blue
+$c-black:           #09181C;                // Black
 
 // Greys
-$color-grey: #888888; // Base Grey
-
-// Grey Variants
-$color-darkGrey:       darken($color-grey, 35%); // Dark Grey
-$color-mediumGrey:     lighten($color-grey, 20%); // Medium Grey
-$color-lightGrey:      lighten($color-grey, 30%); // Light Grey
-$color-lighterGrey:    lighten($color-grey, 35%); // Lighter Grey
+$c-grey:            #888888;                // Base Grey
+$c-darkGrey:        darken($c-grey, 35%);   // Dark Grey
+$c-mediumGrey:      lighten($c-grey, 20%);  // Medium Grey
+$c-lightGrey:       lighten($c-grey, 30%);  // Light Grey
+$c-lighterGrey:     lighten($c-grey, 35%);  // Lighter Grey
 
 // Overlay colors
-$color-overlay:        rgba(0, 0, 0, 0.5);
-$color-transparent:    rgba(255, 255, 255, 0);
+$c-overlay:         rgba(0, 0, 0, 0.5);
+$c-transparent:     rgba(255, 255, 255, 0);

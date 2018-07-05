@@ -196,35 +196,46 @@ module.exports = {
           },
           {
             test: /\.scss$/,
-            use: [{
-              loader: 'style-loader',
-            }, {
-              loader: 'css-loader?importLoaders=1',
-            }, {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins: function () {
-                  return [
-                    autoprefixer({
-                      browsers: [
-                        '>1%',
-                        'last 4 versions',
-                        'Firefox ESR',
-                        'not ie < 9', // React doesn't support IE8 anyway
-                      ],
-                    }),
-                    require('postcss-flexbugs-fixes'),
-                    require('postcss-calc'),
-                    require('postcss-inline-svg')({
-                      path: paths.appSrc + '/assets/icons',
-                    }),
-                  ];
+            use: [
+              {
+                loader: 'style-loader',
+              },
+              {
+                loader: 'css-loader?importLoaders=1',
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  ident: 'postcss',
+                  plugins: function () {
+                    return [
+                      autoprefixer({
+                        browsers: [
+                          '>1%',
+                          'last 4 versions',
+                          'Firefox ESR',
+                          'not ie < 9', // React doesn't support IE8 anyway
+                        ],
+                      }),
+                      require('postcss-flexbugs-fixes'),
+                      require('postcss-calc'),
+                      require('postcss-inline-svg')({
+                        path: paths.appSrc + '/assets/icons',
+                      }),
+                    ];
+                  },
                 },
               },
-            }, {
-              loader: 'sass-loader',
-            }],
+              {
+                loader: 'sass-loader',
+              },
+              {
+                loader: 'sass-resources-loader',
+                options: {
+                  resources: paths.appSrc + '/assets/styles/settings/settings.scss',
+                },
+              },
+            ],
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.

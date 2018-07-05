@@ -1,13 +1,21 @@
-// stylelint-disable
 // Layout Variables
-$base-gutter: 20px;
-$base-leading: 20px;
+$l-space:     10px;
+$l-gutter:    $l-space*2;
+$l-leading:   $l-space*2;
 
 // Visual Variables
-$base-border: 1px solid $color-black;
-$base-radius: 2px;
-$base-shadow: 0 5px 20px rgba(0, 0, 0, 0.075);
+$v-border:    1px solid $c-black;
+$v-radius:    2px;
+$v-shadow:    0 5px 20px rgba(0, 0, 0, 0.075);
 
 // Transition Timing
-$base-trans: 0.3s ease;
-$base-trans-links: 0.15s ease;
+$ts-easing:   ease;
+$ts-timing:   0.3;
+$ts-base:     #{$ts-timing}s $ts-easing;
+$ts-quick:    #{$ts-timing/2}s $ts-easing;
+
+// Breakpoints
+$small:       420px;
+$medium:      768px;
+$large:       1024px;
+$xlarge:      1440px;

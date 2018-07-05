@@ -1,11 +1,11 @@
 // Creates the default typography settings
 $headerSizes: (
-        h1: ($fs-h1*0.8, $fs-h1),
-        h2: ($fs-h2*0.8, $fs-h2),
-        h3: ($fs-h3*0.8, $fs-h3),
-        h4: ($fs-h4*0.8, $fs-h4),
-        h5: ($fs-h5*0.8, $fs-h5),
-        h6: ($fs-h6*0.8, $fs-h6),
+        h1: ($fz-h1*0.8, $fz-h1),
+        h2: ($fz-h2*0.8, $fz-h2),
+        h3: ($fz-h3*0.8, $fz-h3),
+        h4: ($fz-h4*0.8, $fz-h4),
+        h5: ($fz-h5*0.8, $fz-h5),
+        h6: ($fz-h6*0.8, $fz-h6),
 );
 
 @include responsive-typography($headerSizes);
@@ -13,11 +13,11 @@ $headerSizes: (
 // Paragraph
 p {
   line-height: $flh-normal;
-  letter-spacing: $fs-normal/40;
+  letter-spacing: $fz-normal/40;
   margin: 0;
 
   + p {
-    margin-top: $fs-normal/1.25;
+    margin-top: $fz-normal/1.25;
   }
 }
 
