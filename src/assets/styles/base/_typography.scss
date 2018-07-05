@@ -8,7 +8,7 @@ $headerSizes: (
         h6: ($fz-h6*0.8, $fz-h6),
 );
 
-@include responsive-typography($headerSizes);
+@include respTypo($headerSizes);
 
 // Paragraph
 p {
