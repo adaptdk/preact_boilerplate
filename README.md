@@ -1,4 +1,7 @@
-# Preact Boilerplate
+# Deprecation
+This project is no longer maintained, in advance of https://github.com/adaptdk/react_boilerplate
+
+## Preact Boilerplate
 This project was forked from [Create Preact App](https://github.com/just-boris/create-preact-app)
 
 ## Original readme
